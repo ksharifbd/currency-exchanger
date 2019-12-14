@@ -1,9 +1,13 @@
 import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import ExchangeRate from './components/ExchangeRate';
 
 function App() {
   return (
     <div>
-      <p>Hello World</p>
+      <CssBaseline>
+        <ExchangeRate />
+      </CssBaseline>
     </div>
   );
 }
