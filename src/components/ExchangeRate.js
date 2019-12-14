@@ -1,24 +1,66 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from '@material-ui/core/styles/styled';
 
-const ExchangeRate = ({ convertFrom, convertTo }) => (
-  <div>
-    <h2>Rate</h2>
-    <div>
-      <span>{convertFrom}</span>
-      <span>{convertTo}</span>
-    </div>
-  </div>
-);
+const ExchangeRate = ({ from, to }) => {
+  const USDOLLAR_UNICODE = 36;
+  const GBPOUND_UNICODE = 163;
+  const EURO_UNICODE = 8364;
+
+  const getCurrencyCode = currency => {
+    switch (currency) {
+      case 'GBP':
+        return GBPOUND_UNICODE;
+      case 'EURO':
+        return EURO_UNICODE;
+      default:
+        return USDOLLAR_UNICODE;
+    }
+  };
+
+  const getCurrencySign = currency => {
+    return String.fromCharCode(getCurrencyCode(currency));
+  };
+
+  const ExchangeRateWrapper = styled('div')({
+    display: 'flex',
+    justifyContent: 'center',
+  });
+
+  return (
+    <ExchangeRateWrapper>
+      <div>
+        <h2>Rate</h2>
+        <span>
+          {getCurrencySign(from.currency)}
+          {from.value} = {getCurrencySign(to.currency)}
+          {to.value}
+        </span>
+      </div>
+    </ExchangeRateWrapper>
+  );
+};
 
 ExchangeRate.propTypes = {
-  convertFrom: PropTypes.oneOf(['USD', 'EUR', 'GBP']),
-  convertTo: PropTypes.oneOf(['USD', 'EUR', 'GBP']),
+  from: PropTypes.shape({
+    currency: PropTypes.oneOf(['USD', 'EUR', 'GBP']),
+    value: PropTypes.number,
+  }),
+  to: PropTypes.shape({
+    currency: PropTypes.oneOf(['USD', 'EUR', 'GBP']),
+    value: PropTypes.number,
+  }),
 };
 
 ExchangeRate.defaultProps = {
-  convertFrom: 'EUR',
-  convertTo: 'GBP',
+  from: {
+    currency: 'EUR',
+    value: 1,
+  },
+  to: {
+    currency: 'GBP',
+    value: 1,
+  },
 };
 
 export default ExchangeRate;
