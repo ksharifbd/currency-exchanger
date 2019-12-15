@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Box from '@material-ui/core/Box';
 import styled from '@material-ui/core/styles/styled';
 
 const ExchangeRate = ({ from, to }) => {
@@ -22,21 +23,21 @@ const ExchangeRate = ({ from, to }) => {
     return String.fromCharCode(getCurrencyCode(currency));
   };
 
-  const ExchangeRateWrapper = styled('div')({
+  const ExchangeRateWrapper = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
   });
 
   return (
-    <ExchangeRateWrapper>
-      <div>
-        <h2>Rate</h2>
-        <span>
+    <ExchangeRateWrapper mb={3}>
+      <Box>
+        <Box component="h2">Rate</Box>
+        <Box component="span">
           {getCurrencySign(from.currency)}
           {from.value} = {getCurrencySign(to.currency)}
           {to.value}
-        </span>
-      </div>
+        </Box>
+      </Box>
     </ExchangeRateWrapper>
   );
 };
