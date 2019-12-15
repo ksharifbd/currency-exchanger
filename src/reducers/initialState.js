@@ -1,4 +1,10 @@
 const initialState = {
+  exchanger: {
+    currency: {
+      from: 'USD',
+      to: 'GBP',
+    },
+  },
   exchange_rates: {
     rates: [
       {
