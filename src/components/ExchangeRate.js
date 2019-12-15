@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect, useDispatch } from 'react-redux';
 import Box from '@material-ui/core/Box';
 import styled from '@material-ui/core/styles/styled';
 
 const ExchangeRate = ({ from, to }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({
+      type: 'fetch_rates_request',
+    });
+  }, [dispatch]);
+
   const USDOLLAR_UNICODE = 36;
   const GBPOUND_UNICODE = 163;
   const EURO_UNICODE = 8364;
@@ -64,4 +73,4 @@ ExchangeRate.defaultProps = {
   },
 };
 
-export default ExchangeRate;
+export default connect(state => state)(ExchangeRate);

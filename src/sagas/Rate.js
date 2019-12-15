@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, take, race, delay } from 'redux-saga/effects';
 import axios from 'axios';
 import config from '../config.json';
 
@@ -19,25 +19,32 @@ async function getExchangeRates() {
   }
 }
 
-function* getExchangeRatesSaga(action) {
-  try {
-    if (action.type === 'fetch_rates_request') {
+function* getExchangeRatesSaga() {
+  while (true) {
+    try {
       const response = yield call(getExchangeRates);
       yield put({
         type: 'fetch_rates_successful',
         payload: response,
       });
+
+      yield delay(30000);
+    } catch (error) {
+      yield put({
+        type: 'fetch_rates_error',
+        error: new Error(error.message),
+      });
+
+      yield put({ type: 'stop_polling', error: new Error(error) });
     }
-  } catch (error) {
-    yield put({
-      type: 'fetch_rates_error',
-      error: new Error(error.message),
-    });
   }
 }
 
 function* watchGetExchangeRatesSaga() {
-  yield takeLatest('fetch_rates_request', getExchangeRatesSaga);
+  while (true) {
+    yield take('fetch_rates_request');
+    yield race([call(getExchangeRatesSaga), take('stop_polling')]);
+  }
 }
 
 export default watchGetExchangeRatesSaga;
