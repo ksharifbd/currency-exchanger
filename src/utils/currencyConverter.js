@@ -26,6 +26,8 @@ function currencyConverter(
       to: {
         currency: {
           USD: fx.convert(1, { from: currency, to: 'USD' }),
+          GBP: 1,
+          EUR: 1,
           [correnctCurrency]: fx.convert(1, {
             from: currency,
             to: correnctCurrency,

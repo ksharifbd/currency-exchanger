@@ -16,6 +16,7 @@ const initialState = {
           currency: {
             GBP: 0,
             EUR: 0,
+            USD: 1,
           },
         },
       },

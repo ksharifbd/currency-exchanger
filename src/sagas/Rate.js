@@ -9,7 +9,7 @@ async function getExchangeRates() {
     const response = await axios.get(API_URL, {
       params: {
         app_id: '6be834745ed04a7997e7ae6b851aae7f',
-        symbols: 'GBP,EUR',
+        symbols: 'GBP,EUR,USD',
         prettyprint: false,
       },
     });

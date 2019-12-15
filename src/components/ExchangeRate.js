@@ -21,7 +21,7 @@ const ExchangeRate = ({ from, to }) => {
     switch (currency) {
       case 'GBP':
         return GBPOUND_UNICODE;
-      case 'EURO':
+      case 'EUR':
         return EURO_UNICODE;
       default:
         return USDOLLAR_UNICODE;
@@ -73,4 +73,21 @@ ExchangeRate.defaultProps = {
   },
 };
 
-export default connect(state => state)(ExchangeRate);
+export default connect(state => {
+  const { currency } = state.convert;
+  const { rates } = state.exchange_rates;
+
+  const getRate = rates.find(rate => rate.from.currency === currency.from).to
+    .currency[currency.to];
+
+  return {
+    from: {
+      currency: currency.from,
+      value: 1,
+    },
+    to: {
+      currency: currency.to,
+      value: getRate,
+    },
+  };
+})(ExchangeRate);
