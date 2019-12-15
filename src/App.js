@@ -2,8 +2,7 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import styled from '@material-ui/core/styles/styled';
 import ExchangeRate from './components/ExchangeRate';
-import CurrencySelector from './components/CurrencySelector';
-import CurrencyInput from './components/CurrencyInput';
+import Exchanger from './components/Exchanger';
 
 function App() {
   const Container = styled('div')({
@@ -14,8 +13,7 @@ function App() {
     <CssBaseline>
       <Container>
         <ExchangeRate />
-        <CurrencySelector />
-        <CurrencyInput />
+        <Exchanger />
       </Container>
     </CssBaseline>
   );
