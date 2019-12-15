@@ -8,8 +8,8 @@ async function getExchangeRates() {
   try {
     const response = await axios.get(API_URL, {
       params: {
-        app_id: 'f29d5f1213374f2384f44c97c4be7031',
-        symbols: 'USD,EUR',
+        app_id: '6be834745ed04a7997e7ae6b851aae7f',
+        symbols: 'GBP,EUR',
         prettyprint: false,
       },
     });
@@ -25,10 +25,10 @@ function* getExchangeRatesSaga() {
       const response = yield call(getExchangeRates);
       yield put({
         type: 'fetch_rates_successful',
-        payload: response,
+        payload: response.data,
       });
 
-      yield delay(30000);
+      yield delay(30000000);
     } catch (error) {
       yield put({
         type: 'fetch_rates_error',

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import getExchangeRatesReducer from './reducers/rate';
 
 const rootReducer = combineReducers({
-  exchangRates: getExchangeRatesReducer,
+  exchange_rates: getExchangeRatesReducer,
 });
 
 export default rootReducer;
