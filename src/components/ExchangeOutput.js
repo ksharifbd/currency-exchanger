@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import CurrencySelector from './CurrencySelector';
 import InfoDisplayer from './InfoDisplayer';
+import currencies from '../constants/currencies';
 
 const ExchangeOutput = ({
   selectedCurrency,
@@ -37,7 +38,7 @@ const ExchangeOutput = ({
 };
 
 ExchangeOutput.propTypes = {
-  selectedCurrency: PropTypes.oneOf(['USD', 'GBP', 'EUR']),
+  selectedCurrency: PropTypes.oneOf(currencies),
   onCurrencySelect: PropTypes.func.isRequired,
   currencySymbol: PropTypes.string,
   currencyValue: PropTypes.number.isRequired,

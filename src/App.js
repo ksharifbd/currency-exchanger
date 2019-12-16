@@ -7,6 +7,7 @@ import get from 'lodash/get';
 import ExchangeRate from './components/ExchangeRate';
 import Exchanger from './components/Exchanger';
 import actions from './constants/actions';
+import currencies from './constants/currencies';
 
 function App({
   balance,
@@ -93,11 +94,11 @@ App.propTypes = {
     EUR: PropTypes.number,
   }).isRequired,
   exchangeFrom: PropTypes.shape({
-    currency: PropTypes.oneOf(['USD', 'EUR', 'GBP']),
+    currency: PropTypes.oneOf(currencies),
     value: PropTypes.number,
   }).isRequired,
   exchangeTo: PropTypes.shape({
-    currency: PropTypes.oneOf(['USD', 'EUR', 'GBP']),
+    currency: PropTypes.oneOf(currencies),
     value: PropTypes.number,
   }).isRequired,
   currencyFromSymbol: PropTypes.string.isRequired,

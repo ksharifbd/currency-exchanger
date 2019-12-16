@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import styled from '@material-ui/core/styles/styled';
 import getCurrencySymbol from '../utils/getCurrencySymbol';
+import currencies from '../constants/currencies';
 
 const ExchangeRate = ({ from, to }) => {
   const ExchangeRateWrapper = styled(Box)({
@@ -26,11 +27,11 @@ const ExchangeRate = ({ from, to }) => {
 
 ExchangeRate.propTypes = {
   from: PropTypes.shape({
-    currency: PropTypes.oneOf(['USD', 'EUR', 'GBP']),
+    currency: PropTypes.oneOf(currencies),
     value: PropTypes.number,
   }),
   to: PropTypes.shape({
-    currency: PropTypes.oneOf(['USD', 'EUR', 'GBP']),
+    currency: PropTypes.oneOf(currencies),
     value: PropTypes.number,
   }),
 };

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import currencies from '../constants/currencies';
 
 const CurrencySelector = ({ selectedCurrency, onCurrencyChange }) => {
   return (
@@ -23,7 +24,7 @@ const CurrencySelector = ({ selectedCurrency, onCurrencyChange }) => {
 };
 
 CurrencySelector.propTypes = {
-  selectedCurrency: PropTypes.oneOf(['USD', 'GBP', 'EUR']),
+  selectedCurrency: PropTypes.oneOf(currencies),
   onCurrencyChange: PropTypes.func.isRequired,
 };
 

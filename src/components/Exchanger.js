@@ -8,6 +8,7 @@ import ExchangeInput from './ExchangeInput';
 import ExchangeOutput from './ExchangeOutput';
 import valueFormatter from '../utils/valueFormatter';
 import getCurrencySymbol from '../utils/getCurrencySymbol';
+import currencies from '../constants/currencies';
 
 const ExchangerButtonWrapper = styled(Box)({
   textAlign: 'center',
@@ -106,8 +107,8 @@ const Exchanger = ({
 Exchanger.propTypes = {
   currencyFromSymbol: PropTypes.string.isRequired,
   currencyToSymbol: PropTypes.string.isRequired,
-  selectedCurrencyFrom: PropTypes.oneOf(['USD', 'EUR', 'GBP']).isRequired,
-  selectedCurrencyTo: PropTypes.oneOf(['USD', 'EUR', 'GBP']).isRequired,
+  selectedCurrencyFrom: PropTypes.oneOf(currencies).isRequired,
+  selectedCurrencyTo: PropTypes.oneOf(currencies).isRequired,
   onExchange: PropTypes.func.isRequired,
   onFromSelectChange: PropTypes.func.isRequired,
   onToSelectChange: PropTypes.func.isRequired,
