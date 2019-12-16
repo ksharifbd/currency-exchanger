@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { memo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import styled from '@material-ui/core/styles/styled';
@@ -30,6 +30,7 @@ const ExchangeInput = ({
   onCurrencyValueChange,
   currencySymbol,
   value,
+  inputCurrencyBalance,
 }) => {
   return (
     <Box>
@@ -46,7 +47,11 @@ const ExchangeInput = ({
           currencySymbol={currencySymbol}
         />
       </Box>
-      <InfoDisplayer label="Balance" amount="500" symbol={currencySymbol} />
+      <InfoDisplayer
+        label="Balance"
+        amount={inputCurrencyBalance}
+        symbol={currencySymbol}
+      />
     </Box>
   );
 };
@@ -65,4 +70,4 @@ ExchangeInput.defaultProps = {
   currencySymbol: '$',
 };
 
-export default memo(ExchangeInput);
+export default ExchangeInput;

@@ -7,6 +7,7 @@ import ExchangeRate from './components/ExchangeRate';
 import Exchanger from './components/Exchanger';
 
 function App({
+  balance,
   exchangeFrom,
   exchangeTo,
   currencyFromSymbol,
@@ -41,6 +42,23 @@ function App({
     });
   };
 
+  const handleExchange = exchangeData => {
+    const updatedBalance = {
+      ...balance,
+      [exchangeData.from.currency]:
+        balance[exchangeData.from.currency] - Number(exchangeData.from.value),
+      [exchangeData.to.currency]:
+        balance[exchangeData.to.currency] + Number(exchangeData.to.value),
+    };
+
+    console.log(updatedBalance);
+
+    dispatch({
+      type: 'exchange_currency',
+      payload: updatedBalance,
+    });
+  };
+
   return (
     <CssBaseline>
       <Box p={3}>
@@ -53,6 +71,9 @@ function App({
           currencyFromSymbol={currencyFromSymbol}
           currencyToSymbol={currencyToSymbol}
           conversionRate={conversionRate}
+          onExchange={handleExchange}
+          inputCurrencyBalance={balance[selectedCurrencyFrom]}
+          outputCurrencyBalance={balance[selectedCurrencyTo]}
         />
       </Box>
     </CssBaseline>
@@ -62,6 +83,7 @@ function App({
 export default connect(state => {
   const { currency } = state.convert;
   const { rates } = state.exchange_rates;
+  const { balance } = state;
 
   const getRate = rates.find(rate => rate.from.currency === currency.from).to
     .currency[currency.to];
@@ -78,5 +100,6 @@ export default connect(state => {
     currencyFromSymbol: currency.from,
     currencyToSymbol: currency.to,
     conversionRate: getRate,
+    balance,
   };
 })(App);

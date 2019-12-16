@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
@@ -31,6 +32,7 @@ const ExchangeOutput = ({
   onSelect,
   currencySymbol,
   currencyValue,
+  outputCurrencyBalance,
 }) => {
   return (
     <Box>
@@ -51,7 +53,11 @@ const ExchangeOutput = ({
           </Box>
         </ExchangeOutputText>
       </Box>
-      <InfoDisplayer label="Balance" amount="500" symbol={currencySymbol} />
+      <InfoDisplayer
+        label="Balance"
+        amount={outputCurrencyBalance}
+        symbol={currencySymbol}
+      />
     </Box>
   );
 };
@@ -60,14 +66,14 @@ ExchangeOutput.propTypes = {
   selectedCurrency: PropTypes.oneOf(['USD', 'GBP', 'EUR']),
   onSelect: PropTypes.func,
   currencySymbol: PropTypes.string,
-  currencyValue: PropTypes.string,
+  currencyValue: PropTypes.number,
 };
 
 ExchangeOutput.defaultProps = {
   selectedCurrency: 'USD',
   onSelect: () => {},
   currencySymbol: '$',
-  currencyValue: '3444444',
+  currencyValue: 3444444,
 };
 
 export default ExchangeOutput;

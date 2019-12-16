@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import styled from '@material-ui/core/styles/styled';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
@@ -26,7 +27,9 @@ const Exchanger = ({
   onFromSelectChange,
   onToSelectChange,
   conversionRate,
-  onSubmit,
+  onExchange,
+  inputCurrencyBalance,
+  outputCurrencyBalance,
 }) => {
   const [currencyValue, setCurrencyValue] = useState('0');
 
@@ -68,15 +71,34 @@ const Exchanger = ({
     return String.fromCharCode(getCurrencyCode(currency));
   };
 
+  const hanndleSubmit = event => {
+    event.preventDefault();
+
+    const submitData = {
+      from: {
+        currency: selectedCurrencyFrom,
+        value: currencyValue,
+      },
+
+      to: {
+        currency: selectedCurrencyTo,
+        value: currencyValue * conversionRate,
+      },
+    };
+
+    onExchange(submitData);
+  };
+
   return (
     <Box>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={hanndleSubmit}>
         <ExchangerInputsWrapper mb={3}>
           <ExchangeInput
             selectedCurrency={selectedCurrencyFrom}
             onSelect={event => onFromSelectChange(event)}
             currencySymbol={getCurrencySign(currencyFromSymbol)}
             value={currencyValue}
+            inputCurrencyBalance={inputCurrencyBalance}
             onCurrencyValueChange={handleOnCurrencyValueChange} //eslint-disable-line
           />
           <ArrowRightAltIcon />
@@ -85,16 +107,25 @@ const Exchanger = ({
             onSelect={event => onToSelectChange(event)}
             currencyValue={conversionRate * currencyValue}
             currencySymbol={getCurrencySign(currencyToSymbol)}
+            outputCurrencyBalance={outputCurrencyBalance}
           />
         </ExchangerInputsWrapper>
         <ExchangerButtonWrapper>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" type="submit">
             Exchange
           </Button>
         </ExchangerButtonWrapper>
       </form>
     </Box>
   );
+};
+
+Exchanger.propTypes = {
+  onExchange: PropTypes.func,
+};
+
+Exchanger.defaultProps = {
+  onExchange: () => {},
 };
 
 export default Exchanger;
