@@ -11,31 +11,29 @@ const ExchangeOutput = ({
   currencySymbol,
   currencyValue,
   outputCurrencyBalance,
-}) => {
-  return (
-    <Box>
-      <Box mb={3}>
-        <CurrencySelector
-          selectedCurrency={selectedCurrency}
-          onCurrencyChange={event => onCurrencySelect(event)}
-        />
-      </Box>
-      <Box mb={3}>
-        <InfoDisplayer
-          hasWrapper
-          label="Amount"
-          symbol={currencySymbol}
-          amount={currencyValue}
-        />
-      </Box>
-      <InfoDisplayer
-        label="Balance"
-        amount={outputCurrencyBalance}
-        symbol={currencySymbol}
+}) => (
+  <Box>
+    <Box mb={3}>
+      <CurrencySelector
+        selectedCurrency={selectedCurrency}
+        onCurrencyChange={event => onCurrencySelect(event)}
       />
     </Box>
-  );
-};
+    <Box mb={3}>
+      <InfoDisplayer
+        hasWrapper
+        label="Amount"
+        symbol={currencySymbol}
+        amount={currencyValue}
+      />
+    </Box>
+    <InfoDisplayer
+      label="Balance"
+      amount={outputCurrencyBalance}
+      symbol={currencySymbol}
+    />
+  </Box>
+);
 
 ExchangeOutput.propTypes = {
   selectedCurrency: PropTypes.oneOf(currencies),

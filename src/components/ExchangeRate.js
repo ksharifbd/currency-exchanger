@@ -14,20 +14,18 @@ const ExchangeRateHeader = styled(Box)({
   textAlign: 'center',
 });
 
-const ExchangeRate = ({ from, to }) => {
-  return (
-    <ExchangeRateWrapper mb={3}>
-      <Box>
-        <ExchangeRateHeader component="h2">Rate</ExchangeRateHeader>
-        <Box component="span">
-          {getCurrencySymbol(from.currency)}
-          {from.value} = {getCurrencySymbol(to.currency)}
-          {to.value}
-        </Box>
+const ExchangeRate = ({ from, to }) => (
+  <ExchangeRateWrapper mb={3}>
+    <Box>
+      <ExchangeRateHeader component="h2">Rate</ExchangeRateHeader>
+      <Box component="span">
+        {getCurrencySymbol(from.currency)}
+        {from.value} = {getCurrencySymbol(to.currency)}
+        {to.value}
       </Box>
-    </ExchangeRateWrapper>
-  );
-};
+    </Box>
+  </ExchangeRateWrapper>
+);
 
 ExchangeRate.propTypes = {
   from: PropTypes.shape({

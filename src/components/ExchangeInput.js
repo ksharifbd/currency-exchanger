@@ -15,32 +15,30 @@ const ExchangeInput = ({
   inputCurrencyBalance,
   hasInputError,
   inputHelperText,
-}) => {
-  return (
-    <Box>
-      <Box mb={3}>
-        <CurrencySelector
-          selectedCurrency={selectedCurrency}
-          onCurrencyChange={event => onCurrencySelect(event)}
-        />
-      </Box>
-      <Box mb={3}>
-        <CurrencyInput
-          value={currencyValue}
-          onCurrencyValueChange={event => onCurrencyValueChange(event)}
-          currencySymbol={currencySymbol}
-          hasError={hasInputError}
-          helperText={inputHelperText}
-        />
-      </Box>
-      <InfoDisplayer
-        label="Balance"
-        amount={inputCurrencyBalance}
-        symbol={currencySymbol}
+}) => (
+  <Box>
+    <Box mb={3}>
+      <CurrencySelector
+        selectedCurrency={selectedCurrency}
+        onCurrencyChange={event => onCurrencySelect(event)}
       />
     </Box>
-  );
-};
+    <Box mb={3}>
+      <CurrencyInput
+        value={currencyValue}
+        onCurrencyValueChange={event => onCurrencyValueChange(event)}
+        currencySymbol={currencySymbol}
+        hasError={hasInputError}
+        helperText={inputHelperText}
+      />
+    </Box>
+    <InfoDisplayer
+      label="Balance"
+      amount={inputCurrencyBalance}
+      symbol={currencySymbol}
+    />
+  </Box>
+);
 
 ExchangeInput.propTypes = {
   onCurrencySelect: PropTypes.func.isRequired,

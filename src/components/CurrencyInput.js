@@ -11,23 +11,21 @@ const CurrencyInput = ({
   currencySymbol,
   hasError,
   helperText,
-}) => {
-  return (
-    <>
-      <InputLabel htmlFor="amount">Amount</InputLabel>
-      <Input
-        id="amount"
-        value={value}
-        onChange={onCurrencyValueChange}
-        error={hasError}
-        startAdornment={
-          <InputAdornment position="start">{currencySymbol}</InputAdornment>
-        }
-      />
-      <FormHelperText error={hasError}>{helperText}</FormHelperText>
-    </>
-  );
-};
+}) => (
+  <>
+    <InputLabel htmlFor="amount">Amount</InputLabel>
+    <Input
+      id="amount"
+      value={value}
+      onChange={onCurrencyValueChange}
+      error={hasError}
+      startAdornment={
+        <InputAdornment position="start">{currencySymbol}</InputAdornment>
+      }
+    />
+    <FormHelperText error={hasError}>{helperText}</FormHelperText>
+  </>
+);
 
 CurrencyInput.propTypes = {
   onCurrencyValueChange: PropTypes.func,
