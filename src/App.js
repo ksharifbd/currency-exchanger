@@ -44,7 +44,7 @@ function App({
 
     dispatch({
       type: actions.CONVERT_CURRENCY_FROM,
-      currency: value,
+      payload: { currency: value },
     });
   };
 
@@ -54,7 +54,7 @@ function App({
 
     dispatch({
       type: actions.CONVERT_CURRENCY_TO,
-      currency: value,
+      payload: { currency: value },
     });
   };
 
