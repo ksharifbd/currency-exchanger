@@ -19,7 +19,7 @@ const ExchangeOutput = ({
   <Box>
     <Box mb={3}>
       <CurrencySelector
-        selectedOutputCurrency={selectedOutputCurrency}
+        selectedCurrency={selectedOutputCurrency}
         onCurrencyChange={event => onCurrencySelect(event)}
       />
     </Box>
