@@ -19,6 +19,7 @@ const ExchangeInput = ({
   <Box>
     <Box mb={3}>
       <CurrencySelector
+        label="Select currency to convert from"
         selectedCurrency={selectedCurrency}
         onCurrencyChange={event => onCurrencySelect(event)}
       />

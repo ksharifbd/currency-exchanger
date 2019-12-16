@@ -5,9 +5,9 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import currencies from '../constants/currencies';
 
-const CurrencySelector = ({ selectedCurrency, onCurrencyChange }) => (
+const CurrencySelector = ({ label, selectedCurrency, onCurrencyChange }) => (
   <>
-    <InputLabel id="currency">Currency</InputLabel>
+    <InputLabel id="currency">{label}</InputLabel>
     <Select
       labelId="currency"
       id="currency"
@@ -24,10 +24,12 @@ const CurrencySelector = ({ selectedCurrency, onCurrencyChange }) => (
 CurrencySelector.propTypes = {
   selectedCurrency: PropTypes.oneOf(currencies),
   onCurrencyChange: PropTypes.func.isRequired,
+  label: PropTypes.string,
 };
 
 CurrencySelector.defaultProps = {
   selectedCurrency: 'USD',
+  label: '',
 };
 
 export default CurrencySelector;
