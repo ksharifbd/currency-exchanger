@@ -38,11 +38,14 @@ const Exchanger = () => {
   return (
     <ExchangerWrapper>
       <ExchangeEnabler
+        key="from"
         selectedCurrency={selectedCurrencyFrom}
         onSelect={handleFromSelectChange}
+        onCurrencyValueChange={event => console.log('works')} //eslint-disable-line
       />
       <ArrowRightAltIcon />
       <ExchangeEnabler
+        key="to"
         selectedCurrency={selectedCurrencyTo}
         onSelect={handleToSelectChange}
       />

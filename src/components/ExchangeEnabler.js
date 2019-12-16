@@ -7,7 +7,6 @@ import CurrencyInput from './CurrencyInput';
 const ExchangeEnabler = ({
   selectedCurrency,
   onSelect,
-  currencyValue,
   onCurrencyValueChange,
 }) => (
   <Box>
@@ -18,7 +17,6 @@ const ExchangeEnabler = ({
       />
     </Box>
     <CurrencyInput
-      currencyValue={currencyValue}
       onCurrencyValueChange={event => onCurrencyValueChange(event)}
     />
   </Box>
@@ -27,14 +25,12 @@ const ExchangeEnabler = ({
 ExchangeEnabler.propTypes = {
   selectedCurrency: PropTypes.oneOf(['USD', 'GBP', 'EUR']),
   onSelect: PropTypes.func,
-  currencyValue: PropTypes.string,
   onCurrencyValueChange: PropTypes.func,
 };
 
 ExchangeEnabler.defaultProps = {
   selectedCurrency: 'USD',
   onSelect: () => {},
-  currencyValue: '',
   onCurrencyValueChange: () => {},
 };
 
