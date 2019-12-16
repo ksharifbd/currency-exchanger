@@ -3,10 +3,15 @@ import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import styled from '@material-ui/core/styles/styled';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import Button from '@material-ui/core/Button';
 import ExchangeInput from './ExchangeInput';
 import ExchangeOutput from './ExchangeOutput';
 
-const ExchangerWrapper = styled(Box)({
+const ExchangerButtonWrapper = styled(Box)({
+  textAlign: 'center',
+});
+
+const ExchangerInputsWrapper = styled(Box)({
   display: 'flex',
   flexWrap: 'nowrap',
   justifyContent: 'space-evenly',
@@ -21,6 +26,7 @@ const Exchanger = ({
   onFromSelectChange,
   onToSelectChange,
   conversionRate,
+  onSubmit,
 }) => {
   const [currencyValue, setCurrencyValue] = useState('0');
 
@@ -63,22 +69,31 @@ const Exchanger = ({
   };
 
   return (
-    <ExchangerWrapper>
-      <ExchangeInput
-        selectedCurrency={selectedCurrencyFrom}
-        onSelect={event => onFromSelectChange(event)}
-        currencySymbol={getCurrencySign(currencyFromSymbol)}
-        value={currencyValue}
-        onCurrencyValueChange={handleOnCurrencyValueChange} //eslint-disable-line
-      />
-      <ArrowRightAltIcon />
-      <ExchangeOutput
-        selectedCurrency={selectedCurrencyTo}
-        onSelect={event => onToSelectChange(event)}
-        currencyValue={conversionRate * currencyValue}
-        currencySymbol={getCurrencySign(currencyToSymbol)}
-      />
-    </ExchangerWrapper>
+    <Box>
+      <form onSubmit={onSubmit}>
+        <ExchangerInputsWrapper mb={3}>
+          <ExchangeInput
+            selectedCurrency={selectedCurrencyFrom}
+            onSelect={event => onFromSelectChange(event)}
+            currencySymbol={getCurrencySign(currencyFromSymbol)}
+            value={currencyValue}
+            onCurrencyValueChange={handleOnCurrencyValueChange} //eslint-disable-line
+          />
+          <ArrowRightAltIcon />
+          <ExchangeOutput
+            selectedCurrency={selectedCurrencyTo}
+            onSelect={event => onToSelectChange(event)}
+            currencyValue={conversionRate * currencyValue}
+            currencySymbol={getCurrencySign(currencyToSymbol)}
+          />
+        </ExchangerInputsWrapper>
+        <ExchangerButtonWrapper>
+          <Button variant="contained" color="primary">
+            Exchange
+          </Button>
+        </ExchangerButtonWrapper>
+      </form>
+    </Box>
   );
 };
 
