@@ -5,16 +5,20 @@ import styled from '@material-ui/core/styles/styled';
 import getCurrencySymbol from '../utils/getCurrencySymbol';
 import currencies from '../constants/currencies';
 
-const ExchangeRate = ({ from, to }) => {
-  const ExchangeRateWrapper = styled(Box)({
-    display: 'flex',
-    justifyContent: 'center',
-  });
+const ExchangeRateWrapper = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+});
 
+const ExchangeRateHeader = styled(Box)({
+  textAlign: 'center',
+});
+
+const ExchangeRate = ({ from, to }) => {
   return (
     <ExchangeRateWrapper mb={3}>
       <Box>
-        <Box component="h2">Rate</Box>
+        <ExchangeRateHeader component="h2">Rate</ExchangeRateHeader>
         <Box component="span">
           {getCurrencySymbol(from.currency)}
           {from.value} = {getCurrencySymbol(to.currency)}
