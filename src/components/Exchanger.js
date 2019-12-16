@@ -128,11 +128,13 @@ const Exchanger = ({
           />
           <ArrowRightAltIcon />
           <ExchangeOutput
-            selectedCurrency={selectedCurrencyTo}
+            selectedInputCurrency={selectedCurrencyFrom}
+            selectedOutputCurrency={selectedCurrencyTo}
             onCurrencySelect={event => onToSelectChange(event)}
-            currencyValue={currencyValue ? valueFormatter(convertedValue) : ''}
+            convertedValue={currencyValue ? valueFormatter(convertedValue) : ''}
             currencySymbol={getCurrencySymbol(currencyToSymbol)}
             outputCurrencyBalance={outputCurrencyBalance.toString()}
+            outputCurrencyExchangeRate={conversionRate.toString()}
           />
         </ExchangerInputsWrapper>
         <ExchangerButtonWrapper>

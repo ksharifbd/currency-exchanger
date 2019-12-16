@@ -10,20 +10,20 @@ const ExchangeRateWrapper = styled(Box)({
   justifyContent: 'center',
 });
 
-const ExchangeRateHeader = styled(Box)({
+const ExchangeRateContent = styled(Box)({
   textAlign: 'center',
 });
 
 const ExchangeRate = ({ from, to }) => (
   <ExchangeRateWrapper mb={3}>
-    <Box>
-      <ExchangeRateHeader component="h2">Rate</ExchangeRateHeader>
+    <ExchangeRateContent>
+      <Box component="h2">Exchange Rate</Box>
       <Box component="span">
         {getCurrencySymbol(from.currency)}
         {from.value} = {getCurrencySymbol(to.currency)}
         {to.value}
       </Box>
-    </Box>
+    </ExchangeRateContent>
   </ExchangeRateWrapper>
 );
 

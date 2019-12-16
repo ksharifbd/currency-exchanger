@@ -1,21 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import CurrencySelector from './CurrencySelector';
 import InfoDisplayer from './InfoDisplayer';
 import currencies from '../constants/currencies';
+import getCurrencySymbol from '../utils/getCurrencySymbol';
 
 const ExchangeOutput = ({
-  selectedCurrency,
+  selectedOutputCurrency,
+  selectedInputCurrency,
   onCurrencySelect,
   currencySymbol,
-  currencyValue,
+  convertedValue,
   outputCurrencyBalance,
+  outputCurrencyExchangeRate,
 }) => (
   <Box>
     <Box mb={3}>
       <CurrencySelector
-        selectedCurrency={selectedCurrency}
+        selectedOutputCurrency={selectedOutputCurrency}
         onCurrencyChange={event => onCurrencySelect(event)}
       />
     </Box>
@@ -24,8 +28,12 @@ const ExchangeOutput = ({
         hasWrapper
         label="Amount"
         symbol={currencySymbol}
-        amount={currencyValue}
+        amount={convertedValue}
       />
+      <FormHelperText>{`${getCurrencySymbol(
+        selectedInputCurrency
+      )} 1 = ${getCurrencySymbol(selectedOutputCurrency)}
+        ${outputCurrencyExchangeRate}`}</FormHelperText>
     </Box>
     <InfoDisplayer
       label="Balance"
@@ -36,15 +44,18 @@ const ExchangeOutput = ({
 );
 
 ExchangeOutput.propTypes = {
-  selectedCurrency: PropTypes.oneOf(currencies),
+  selectedOutputCurrency: PropTypes.oneOf(currencies),
+  selectedInputCurrency: PropTypes.oneOf(currencies),
   onCurrencySelect: PropTypes.func.isRequired,
   currencySymbol: PropTypes.string,
-  currencyValue: PropTypes.string.isRequired,
+  convertedValue: PropTypes.string.isRequired,
   outputCurrencyBalance: PropTypes.string.isRequired,
+  outputCurrencyExchangeRate: PropTypes.string.isRequired,
 };
 
 ExchangeOutput.defaultProps = {
-  selectedCurrency: 'USD',
+  selectedOutputCurrency: 'GBP',
+  selectedInputCurrency: 'USD',
   currencySymbol: '$',
 };
 
