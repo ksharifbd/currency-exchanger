@@ -33,7 +33,7 @@ const Exchanger = ({
   inputCurrencyBalance,
   outputCurrencyBalance,
 }) => {
-  const [currencyValue, setCurrencyValue] = useState('0');
+  const [currencyValue, setCurrencyValue] = useState('');
 
   const textToCurrency = event => {
     const { value } = event.target;
@@ -73,6 +73,18 @@ const Exchanger = ({
     onExchange(submitData);
   };
 
+  const shouldDisable = () => {
+    if (!currencyValue) {
+      return true;
+    }
+
+    if (currencyValue > inputCurrencyBalance) {
+      return true;
+    }
+
+    return false;
+  };
+
   return (
     <Box>
       <form onSubmit={hanndleSubmit}>
@@ -95,7 +107,12 @@ const Exchanger = ({
           />
         </ExchangerInputsWrapper>
         <ExchangerButtonWrapper>
-          <Button variant="contained" color="primary" type="submit">
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            disabled={shouldDisable()}
+          >
             Exchange
           </Button>
         </ExchangerButtonWrapper>
