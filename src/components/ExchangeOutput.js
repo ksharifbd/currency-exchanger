@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import styled from '@material-ui/core/styles/styled';
 import CurrencySelector from './CurrencySelector';
+import InfoDisplayer from './InfoDisplayer';
 
 const labelStyles = {
   color: 'rgba(0, 0, 0, 0.54)',
@@ -39,15 +40,18 @@ const ExchangeOutput = ({
           onCurrencyChange={event => onSelect(event)}
         />
       </Box>
-      <ExchangeOutputText>
-        <ExchangeOutputLabel component="p">Amount</ExchangeOutputLabel>
-        <Box>
-          <ExchangeOutputSymbol component="span">
-            {currencySymbol}
-          </ExchangeOutputSymbol>
-          <Box component="span">{currencyValue}</Box>
-        </Box>
-      </ExchangeOutputText>
+      <Box mb={3}>
+        <ExchangeOutputText>
+          <ExchangeOutputLabel component="p">Amount</ExchangeOutputLabel>
+          <Box>
+            <ExchangeOutputSymbol component="span">
+              {currencySymbol}
+            </ExchangeOutputSymbol>
+            <Box component="span">{currencyValue}</Box>
+          </Box>
+        </ExchangeOutputText>
+      </Box>
+      <InfoDisplayer label="Balance" amount="500" symbol={currencySymbol} />
     </Box>
   );
 };
