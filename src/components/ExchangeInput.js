@@ -13,6 +13,8 @@ const ExchangeInput = ({
   currencySymbol,
   currencyValue,
   inputCurrencyBalance,
+  hasInputError,
+  inputHelperText,
 }) => {
   return (
     <Box>
@@ -27,6 +29,8 @@ const ExchangeInput = ({
           value={currencyValue}
           onCurrencyValueChange={event => onCurrencyValueChange(event)}
           currencySymbol={currencySymbol}
+          hasError={hasInputError}
+          helperText={inputHelperText}
         />
       </Box>
       <InfoDisplayer
@@ -45,11 +49,15 @@ ExchangeInput.propTypes = {
   inputCurrencyBalance: PropTypes.string.isRequired,
   selectedCurrency: PropTypes.oneOf(currencies),
   currencySymbol: PropTypes.string,
+  hasInputError: PropTypes.bool,
+  inputHelperText: PropTypes.string,
 };
 
 ExchangeInput.defaultProps = {
   selectedCurrency: 'USD',
   currencySymbol: '$',
+  hasInputError: false,
+  inputHelperText: '',
 };
 
 export default ExchangeInput;

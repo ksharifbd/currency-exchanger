@@ -73,16 +73,34 @@ const Exchanger = ({
     onExchange(submitData);
   };
 
+  const isBeyondBalance = currencyValue > inputCurrencyBalance;
+
   const shouldDisable = () => {
     if (!currencyValue) {
       return true;
     }
 
-    if (currencyValue > inputCurrencyBalance) {
+    if (isBeyondBalance) {
       return true;
     }
 
     return false;
+  };
+
+  const hasInputError = () => {
+    if (isBeyondBalance) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const getHelperText = () => {
+    if (isBeyondBalance) {
+      return 'Provided value exceeds balance';
+    }
+
+    return 'Provide value within balance';
   };
 
   return (
@@ -90,12 +108,14 @@ const Exchanger = ({
       <form onSubmit={hanndleSubmit}>
         <ExchangerInputsWrapper mb={3}>
           <ExchangeInput
+            hasInputError={hasInputError()}
             selectedCurrency={selectedCurrencyFrom}
             onCurrencySelect={event => onFromSelectChange(event)}
             currencySymbol={getCurrencySymbol(currencyFromSymbol)}
             currencyValue={currencyValue.toString()}
             inputCurrencyBalance={inputCurrencyBalance.toString()}
-            onCurrencyValueChange={handleOnCurrencyValueChange} //eslint-disable-line
+            onCurrencyValueChange={handleOnCurrencyValueChange}
+            inputHelperText={getHelperText()}
           />
           <ArrowRightAltIcon />
           <ExchangeOutput
