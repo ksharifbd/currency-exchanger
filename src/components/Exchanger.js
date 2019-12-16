@@ -74,6 +74,7 @@ const Exchanger = ({
   };
 
   const isBeyondBalance = currencyValue > inputCurrencyBalance;
+  const isBalanceEmpty = !currencyValue && !inputCurrencyBalance;
 
   const shouldDisable = () => {
     if (!currencyValue) {
@@ -88,6 +89,10 @@ const Exchanger = ({
   };
 
   const hasInputError = () => {
+    if (isBalanceEmpty) {
+      return true;
+    }
+
     if (isBeyondBalance) {
       return true;
     }
@@ -96,6 +101,10 @@ const Exchanger = ({
   };
 
   const getHelperText = () => {
+    if (isBalanceEmpty) {
+      return 'You do not have enough balance';
+    }
+
     if (isBeyondBalance) {
       return 'Provided value exceeds balance';
     }
