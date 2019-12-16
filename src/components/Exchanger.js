@@ -101,7 +101,7 @@ const Exchanger = ({
           <ExchangeOutput
             selectedCurrency={selectedCurrencyTo}
             onCurrencySelect={event => onToSelectChange(event)}
-            currencyValue={convertedValue ? valueFormatter(convertedValue) : ''}
+            currencyValue={currencyValue ? valueFormatter(convertedValue) : ''}
             currencySymbol={getCurrencySymbol(currencyToSymbol)}
             outputCurrencyBalance={outputCurrencyBalance.toString()}
           />
