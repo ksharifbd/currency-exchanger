@@ -42,7 +42,7 @@ ExchangeInput.propTypes = {
   onCurrencySelect: PropTypes.func.isRequired,
   onCurrencyValueChange: PropTypes.func.isRequired,
   currencyValue: PropTypes.string.isRequired,
-  inputCurrencyBalance: PropTypes.number.isRequired,
+  inputCurrencyBalance: PropTypes.string.isRequired,
   selectedCurrency: PropTypes.oneOf(currencies),
   currencySymbol: PropTypes.string,
 };

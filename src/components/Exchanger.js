@@ -93,17 +93,17 @@ const Exchanger = ({
             selectedCurrency={selectedCurrencyFrom}
             onCurrencySelect={event => onFromSelectChange(event)}
             currencySymbol={getCurrencySymbol(currencyFromSymbol)}
-            currencyValue={currencyValue}
-            inputCurrencyBalance={inputCurrencyBalance}
+            currencyValue={currencyValue.toString()}
+            inputCurrencyBalance={inputCurrencyBalance.toString()}
             onCurrencyValueChange={handleOnCurrencyValueChange} //eslint-disable-line
           />
           <ArrowRightAltIcon />
           <ExchangeOutput
             selectedCurrency={selectedCurrencyTo}
             onCurrencySelect={event => onToSelectChange(event)}
-            currencyValue={valueFormatter(convertedValue, true)}
+            currencyValue={convertedValue ? valueFormatter(convertedValue) : ''}
             currencySymbol={getCurrencySymbol(currencyToSymbol)}
-            outputCurrencyBalance={outputCurrencyBalance}
+            outputCurrencyBalance={outputCurrencyBalance.toString()}
           />
         </ExchangerInputsWrapper>
         <ExchangerButtonWrapper>

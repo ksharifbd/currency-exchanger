@@ -1,4 +1,4 @@
-function valueFormatter(value, convertToNumber = false) {
+function valueFormatter(value) {
   const [number, decimal] = value
     .toString()
     .replace(/[^0-9.]/gi, '')
@@ -6,11 +6,7 @@ function valueFormatter(value, convertToNumber = false) {
 
   const isDecimal = typeof decimal !== 'undefined';
 
-  const updatedValue = `${number}${
-    isDecimal ? `.${decimal.substring(0, 2)}` : ''
-  }`;
-
-  return convertToNumber ? Number(updatedValue) : updatedValue;
+  return `${number}${isDecimal ? `.${decimal.substring(0, 2)}` : ''}`;
 }
 
 export default valueFormatter;

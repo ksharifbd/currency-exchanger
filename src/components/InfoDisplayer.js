@@ -49,7 +49,7 @@ const InfoDisplayer = ({ label, symbol, amount, hasWrapper }) => {
 InfoDisplayer.propTypes = {
   label: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.string.isRequired,
   hasWrapper: PropTypes.bool,
 };
 

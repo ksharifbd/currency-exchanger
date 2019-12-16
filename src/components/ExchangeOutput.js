@@ -41,8 +41,8 @@ ExchangeOutput.propTypes = {
   selectedCurrency: PropTypes.oneOf(currencies),
   onCurrencySelect: PropTypes.func.isRequired,
   currencySymbol: PropTypes.string,
-  currencyValue: PropTypes.number.isRequired,
-  outputCurrencyBalance: PropTypes.number.isRequired,
+  currencyValue: PropTypes.string.isRequired,
+  outputCurrencyBalance: PropTypes.string.isRequired,
 };
 
 ExchangeOutput.defaultProps = {
