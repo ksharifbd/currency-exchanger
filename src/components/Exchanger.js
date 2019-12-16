@@ -32,6 +32,7 @@ const Exchanger = ({
   onExchange,
   inputCurrencyBalance,
   outputCurrencyBalance,
+  isEverythingUp,
 }) => {
   const [currencyValue, setCurrencyValue] = useState('');
 
@@ -77,6 +78,10 @@ const Exchanger = ({
   const isBalanceEmpty = !currencyValue && !inputCurrencyBalance;
 
   const shouldDisable = () => {
+    if (isEverythingUp) {
+      return true;
+    }
+
     if (!currencyValue) {
       return true;
     }
@@ -163,6 +168,7 @@ Exchanger.propTypes = {
   conversionRate: PropTypes.number.isRequired,
   inputCurrencyBalance: PropTypes.number.isRequired,
   outputCurrencyBalance: PropTypes.number.isRequired,
+  isEverythingUp: PropTypes.bool.isRequired,
 };
 
 export default Exchanger;

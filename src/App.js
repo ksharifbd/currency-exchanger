@@ -111,6 +111,7 @@ function App({
           onExchange={handleExchange}
           inputCurrencyBalance={balance[selectedCurrencyFrom]}
           outputCurrencyBalance={balance[selectedCurrencyTo]}
+          isEverythingUp={Boolean(showMessage)}
         />
       </Box>
     </CssBaseline>
