@@ -4,10 +4,18 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import { connect, useDispatch } from 'react-redux';
 import get from 'lodash/get';
+import styled from '@material-ui/core/styles/styled';
+import red from '@material-ui/core/colors/red';
 import ExchangeRate from './components/ExchangeRate';
 import Exchanger from './components/Exchanger';
 import actions from './constants/actions';
 import currencies from './constants/currencies';
+
+const MessageDisplayer = styled(Box)({
+  textAlign: 'center',
+  fontSize: '1rem',
+  color: ({ error }) => (error ? red[500] : 'inherit'),
+});
 
 function App({
   balance,
@@ -16,6 +24,8 @@ function App({
   currencyFromSymbol,
   currencyToSymbol,
   conversionRate,
+  displayError,
+  isLoading,
 }) {
   const [selectedCurrencyFrom, setSelectedCurrencyFrom] = useState('USD');
   const [selectedCurrencyTo, setSelectedCurrencyTo] = useState('GBP');
@@ -66,10 +76,30 @@ function App({
     });
   };
 
+  const getMessage = () => {
+    if (!isLoading && displayError) {
+      return displayError;
+    }
+
+    if (isLoading) {
+      return 'Please wait a while everything is up!';
+    }
+
+    return '';
+  };
+
+  const showMessage = getMessage();
+
   return (
     <CssBaseline>
       <Box p={3}>
-        <ExchangeRate from={exchangeFrom} to={exchangeTo} />
+        {showMessage ? (
+          <MessageDisplayer error={displayError} component="p">
+            {showMessage}
+          </MessageDisplayer>
+        ) : (
+          <ExchangeRate from={exchangeFrom} to={exchangeTo} />
+        )}
         <Exchanger
           selectedCurrencyFrom={selectedCurrencyFrom}
           selectedCurrencyTo={selectedCurrencyTo}
@@ -104,12 +134,20 @@ App.propTypes = {
   currencyFromSymbol: PropTypes.string.isRequired,
   currencyToSymbol: PropTypes.string.isRequired,
   conversionRate: PropTypes.number.isRequired,
+  displayError: PropTypes.string,
+  isLoading: PropTypes.bool,
+};
+
+App.defaultProps = {
+  displayError: '',
+  isLoading: false,
 };
 
 export default connect(state => {
   const { currency } = state.convert;
-  const { rates } = state.exchange_rates;
+  const { rates, isFetching: isLoading } = state.exchange_rates;
   const { balance } = state;
+  const displayError = get(state, 'exchange_rates.error', '');
 
   const findExchangables = rates.find(
     rate => get(rate, 'from.currency') === currency.from
@@ -130,5 +168,7 @@ export default connect(state => {
     currencyToSymbol: currency.to,
     conversionRate: toRate,
     balance,
+    displayError,
+    isLoading,
   };
 })(App);

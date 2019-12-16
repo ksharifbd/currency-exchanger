@@ -23,7 +23,11 @@ function getExchangeRatesReducer(state = initialState.exchange_rates, action) {
         isFetching: false,
       };
     case actions.FETCH_EXCHANGE_RATES_ERROR:
-      return { ...state, error: action.error.message, isFetching: false };
+      return {
+        ...state,
+        error: action.error.message,
+        isFetching: false,
+      };
     default:
       return state;
   }

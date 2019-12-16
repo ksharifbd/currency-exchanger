@@ -17,7 +17,7 @@ async function getExchangeRates() {
 
     return response;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error('Fetching exchange rate failed');
   }
 }
 
