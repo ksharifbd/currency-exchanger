@@ -42,8 +42,8 @@ const Exchanger = ({
 
     return {
       ...event,
-      target: { ...event.target, updatedValue },
-      currentTarget: { ...event.currentTarget, updatedValue },
+      target: { ...event.target, value: updatedValue },
+      currentTarget: { ...event.currentTarget, value: updatedValue },
     };
   };
 
