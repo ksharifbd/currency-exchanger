@@ -78,15 +78,7 @@ const Exchanger = ({
   const isBalanceEmpty = !currencyValue && !inputCurrencyBalance;
 
   const shouldDisable = () => {
-    if (isEverythingUp) {
-      return true;
-    }
-
-    if (!currencyValue) {
-      return true;
-    }
-
-    if (isBeyondBalance) {
+    if (isEverythingUp || !currencyValue || isBeyondBalance) {
       return true;
     }
 
@@ -94,11 +86,7 @@ const Exchanger = ({
   };
 
   const hasInputError = () => {
-    if (isBalanceEmpty) {
-      return true;
-    }
-
-    if (isBeyondBalance) {
+    if (isBalanceEmpty || isBeyondBalance) {
       return true;
     }
 
