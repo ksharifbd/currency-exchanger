@@ -1,11 +1,12 @@
 import initialState from './initialState';
 import currencyConverter from '../utils/currencyConverter';
+import actions from '../constants/actions';
 
 function getExchangeRatesReducer(state = initialState.exchange_rates, action) {
   switch (action.type) {
-    case 'fetch_rates_request':
+    case actions.FETCH_EXCHANGE_RATES_REQUEST:
       return { ...state, isFetching: true };
-    case 'fetch_rates_successful':
+    case actions.FETCH_EXCHANGE_RATES_SUCCESSFUL:
       return {
         ...state,
         rates: [
@@ -19,9 +20,10 @@ function getExchangeRatesReducer(state = initialState.exchange_rates, action) {
           }),
           ...currencyConverter(action.payload.rates),
         ],
+        isFetching: false,
       };
-    case 'fetch_rates_error':
-      return { ...state, error: action.error.message };
+    case actions.FETCH_EXCHANGE_RATES_ERROR:
+      return { ...state, error: action.error.message, isFetching: false };
     default:
       return state;
   }

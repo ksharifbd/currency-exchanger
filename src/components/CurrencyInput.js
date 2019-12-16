@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -24,6 +23,7 @@ const CurrencyInput = ({ value, onCurrencyValueChange, currencySymbol }) => {
 CurrencyInput.propTypes = {
   onCurrencyValueChange: PropTypes.func,
   currencySymbol: PropTypes.string,
+  value: PropTypes.string.isRequired,
 };
 
 CurrencyInput.defaultProps = {

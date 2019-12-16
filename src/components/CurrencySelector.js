@@ -24,12 +24,11 @@ const CurrencySelector = ({ selectedCurrency, onCurrencyChange }) => {
 
 CurrencySelector.propTypes = {
   selectedCurrency: PropTypes.oneOf(['USD', 'GBP', 'EUR']),
-  onCurrencyChange: PropTypes.func,
+  onCurrencyChange: PropTypes.func.isRequired,
 };
 
 CurrencySelector.defaultProps = {
   selectedCurrency: 'USD',
-  onCurrencyChange: () => {},
 };
 
 export default CurrencySelector;

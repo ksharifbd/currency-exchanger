@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
@@ -7,6 +6,8 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import Button from '@material-ui/core/Button';
 import ExchangeInput from './ExchangeInput';
 import ExchangeOutput from './ExchangeOutput';
+import valueFormatter from '../utils/valueFormatter';
+import getCurrencySymbol from '../utils/getCurrencySymbol';
 
 const ExchangerButtonWrapper = styled(Box)({
   textAlign: 'center',
@@ -34,42 +35,24 @@ const Exchanger = ({
   const [currencyValue, setCurrencyValue] = useState('0');
 
   const textToCurrency = event => {
-    const [number, decimal] = event.target.value
-      .toString()
-      .replace(/[^0-9.]/gi, '')
-      .split('.');
-    const isDecimal = typeof decimal !== 'undefined';
-    const value = `${number}${isDecimal ? `.${decimal.substring(0, 2)}` : ''}`;
+    const { value } = event.target;
+
+    const updatedValue = valueFormatter(value);
+
     return {
       ...event,
-      target: { ...event.target, value },
-      currentTarget: { ...event.currentTarget, value },
+      target: { ...event.target, updatedValue },
+      currentTarget: { ...event.currentTarget, updatedValue },
     };
   };
 
   const handleOnCurrencyValueChange = event => {
     const eventWithUpdatedValue = textToCurrency(event);
+
     setCurrencyValue(eventWithUpdatedValue.target.value);
   };
 
-  const USDOLLAR_UNICODE = 36;
-  const GBPOUND_UNICODE = 163;
-  const EURO_UNICODE = 8364;
-
-  const getCurrencyCode = currency => {
-    switch (currency) {
-      case 'GBP':
-        return GBPOUND_UNICODE;
-      case 'EUR':
-        return EURO_UNICODE;
-      default:
-        return USDOLLAR_UNICODE;
-    }
-  };
-
-  const getCurrencySign = currency => {
-    return String.fromCharCode(getCurrencyCode(currency));
-  };
+  const convertedValue = Number(currencyValue) * conversionRate;
 
   const hanndleSubmit = event => {
     event.preventDefault();
@@ -77,12 +60,12 @@ const Exchanger = ({
     const submitData = {
       from: {
         currency: selectedCurrencyFrom,
-        value: currencyValue,
+        value: Number(currencyValue),
       },
 
       to: {
         currency: selectedCurrencyTo,
-        value: currencyValue * conversionRate,
+        value: convertedValue,
       },
     };
 
@@ -95,18 +78,18 @@ const Exchanger = ({
         <ExchangerInputsWrapper mb={3}>
           <ExchangeInput
             selectedCurrency={selectedCurrencyFrom}
-            onSelect={event => onFromSelectChange(event)}
-            currencySymbol={getCurrencySign(currencyFromSymbol)}
-            value={currencyValue}
+            onCurrencySelect={event => onFromSelectChange(event)}
+            currencySymbol={getCurrencySymbol(currencyFromSymbol)}
+            currencyValue={currencyValue}
             inputCurrencyBalance={inputCurrencyBalance}
             onCurrencyValueChange={handleOnCurrencyValueChange} //eslint-disable-line
           />
           <ArrowRightAltIcon />
           <ExchangeOutput
             selectedCurrency={selectedCurrencyTo}
-            onSelect={event => onToSelectChange(event)}
-            currencyValue={conversionRate * currencyValue}
-            currencySymbol={getCurrencySign(currencyToSymbol)}
+            onCurrencySelect={event => onToSelectChange(event)}
+            currencyValue={valueFormatter(convertedValue, true)}
+            currencySymbol={getCurrencySymbol(currencyToSymbol)}
             outputCurrencyBalance={outputCurrencyBalance}
           />
         </ExchangerInputsWrapper>
@@ -121,11 +104,16 @@ const Exchanger = ({
 };
 
 Exchanger.propTypes = {
-  onExchange: PropTypes.func,
-};
-
-Exchanger.defaultProps = {
-  onExchange: () => {},
+  currencyFromSymbol: PropTypes.string.isRequired,
+  currencyToSymbol: PropTypes.string.isRequired,
+  selectedCurrencyFrom: PropTypes.oneOf(['USD', 'EUR', 'GBP']).isRequired,
+  selectedCurrencyTo: PropTypes.oneOf(['USD', 'EUR', 'GBP']).isRequired,
+  onExchange: PropTypes.func.isRequired,
+  onFromSelectChange: PropTypes.func.isRequired,
+  onToSelectChange: PropTypes.func.isRequired,
+  conversionRate: PropTypes.number.isRequired,
+  inputCurrencyBalance: PropTypes.number.isRequired,
+  outputCurrencyBalance: PropTypes.number.isRequired,
 };
 
 export default Exchanger;

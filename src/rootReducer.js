@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import getExchangeRatesReducer from './reducers/rate';
+import getExchangeRatesReducer from './reducers/exchangeRate';
 import ExchangerReducer from './reducers/exchanger';
 import balanceReducer from './reducers/balance';
 

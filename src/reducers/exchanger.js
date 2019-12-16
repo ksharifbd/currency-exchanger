@@ -1,13 +1,14 @@
 import initialState from './initialState';
+import actions from '../constants/actions';
 
 function ExchangerReducer(state = initialState.exchanger, action) {
   switch (action.type) {
-    case 'convert_currency_from':
+    case actions.CONVERT_CURRENCY_FROM:
       return {
         ...state,
         currency: { ...state.currency, from: action.currency },
       };
-    case 'convert_currency_to':
+    case actions.CONVERT_CURRENCY_TO:
       return {
         ...state,
         currency: { ...state.currency, to: action.currency },
