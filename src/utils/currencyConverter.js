@@ -4,6 +4,7 @@ function currencyConverter(
   rates = {
     GBP: 1,
     EUR: 1,
+    USD: 1,
   }
 ) {
   const baseCurrency = 'USD';
@@ -13,7 +14,6 @@ function currencyConverter(
   fx.base = baseCurrency;
   fx.rates = {
     ...rates,
-    [baseCurrency]: 1,
   };
 
   const getConvertedCurrencies = otherCurrencies.map(currency => {
