@@ -31,7 +31,7 @@ function* getExchangeRatesSaga() {
         payload: response.data,
       });
 
-      yield delay(30000000);
+      yield delay(process.env.REACT_APP_API_POLL_INTERVAL || 10000);
     } catch (error) {
       yield put({
         type: actions.FETCH_EXCHANGE_RATES_ERROR,
