@@ -4,7 +4,9 @@ An app that enables users to exchange currency between US dollar, British pound,
 
 ## Running the app
 
-- clone the repo
+- The app uses [open exchange rates](https://openexchangerates.org/) API to get the latest exchange rate in every 10 seconds interval. Please sign up there and the api key will be provided.
+- clone the repo.
+- Create a `.env` file and put the api key there. View the `.env.sample` for the environment variable name.
 - run `npm start`
 - The app will be run at `localhost:3000`
 
