@@ -5,7 +5,9 @@ import actions from '../constants/actions';
 
 const { API_URL } = config;
 
-async function getExchangeRates() {
+export const errorMessage = 'Fetching exchange rate failed';
+
+export async function getExchangeRates() {
   try {
     const response = await axios.get(API_URL, {
       params: {
@@ -17,7 +19,7 @@ async function getExchangeRates() {
 
     return response;
   } catch (error) {
-    throw new Error('Fetching exchange rate failed');
+    throw new Error(errorMessage);
   }
 }
 
