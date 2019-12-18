@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Exchange Rate should return the default setup correctly 1`] = `
+<ExchangeRate
+  from={
+    Object {
+      "currency": "EUR",
+      "value": 1,
+    }
+  }
+  to={
+    Object {
+      "currency": "GBP",
+      "value": 1,
+    }
+  }
+>
+  <Styled(Styled(MuiBox))
+    mb={3}
+  >
+    <Styled(MuiBox)
+      className="Styled(MuiBox)-root-1"
+      mb={3}
+    >
+      <div
+        className="MuiBox-root MuiBox-root-3 Styled(MuiBox)-root-1"
+      >
+        <Styled(Styled(MuiBox))>
+          <Styled(MuiBox)
+            className="Styled(MuiBox)-root-4"
+          >
+            <div
+              className="MuiBox-root MuiBox-root-5 Styled(MuiBox)-root-4"
+            >
+              <Styled(MuiBox)
+                component="h2"
+              >
+                <h2
+                  className="MuiBox-root MuiBox-root-6"
+                >
+                  Exchange Rate
+                </h2>
+              </Styled(MuiBox)>
+              <Styled(MuiBox)
+                component="span"
+              >
+                <span
+                  className="MuiBox-root MuiBox-root-7"
+                >
+                  €
+                  1
+                   = 
+                  £
+                  1
+                </span>
+              </Styled(MuiBox)>
+            </div>
+          </Styled(MuiBox)>
+        </Styled(Styled(MuiBox))>
+      </div>
+    </Styled(MuiBox)>
+  </Styled(Styled(MuiBox))>
+</ExchangeRate>
+`;
