@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getExchangeRates, errorMessage } from '../exchangeRate';
+import getExchangeRates, { errorMessage } from '../getExchangeRates';
 
 jest.mock('axios');
 

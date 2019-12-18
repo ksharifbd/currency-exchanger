@@ -1,27 +1,6 @@
 import { call, put, take, race, delay } from 'redux-saga/effects';
-import axios from 'axios';
-import config from '../config.json';
 import actions from '../constants/actions';
-
-const { API_URL } = config;
-
-export const errorMessage = 'Fetching exchange rate failed';
-
-export async function getExchangeRates() {
-  try {
-    const response = await axios.get(API_URL, {
-      params: {
-        app_id: process.env.REACT_APP_OPEN_EXCHANGE_API_KEY,
-        symbols: 'GBP,EUR,USD',
-        prettyprint: false,
-      },
-    });
-
-    return response;
-  } catch (error) {
-    throw new Error(errorMessage);
-  }
-}
+import getExchangeRates from '../services/getExchangeRates';
 
 function* getExchangeRatesSaga() {
   while (true) {
