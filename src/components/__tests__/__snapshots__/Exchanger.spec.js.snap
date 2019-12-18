@@ -11,9 +11,9 @@ exports[`Exchanger should render basic setup correctly 1`] = `
       <ExchangeInput
         currencySymbol="please provide USD, GBP, or EUR"
         currencyValue=""
-        hasInputError={false}
+        hasInputError={true}
         inputCurrencyBalance="10"
-        inputHelperText="Provide value within balance"
+        inputHelperText="Same currency exchange is not allowed"
         onCurrencySelect={[Function]}
         onCurrencyValueChange={[Function]}
         selectedCurrency="USD"

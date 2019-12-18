@@ -76,9 +76,15 @@ const Exchanger = ({
 
   const isBeyondBalance = currencyValue > inputCurrencyBalance;
   const isBalanceEmpty = !currencyValue && !inputCurrencyBalance;
+  const isSameCurrencySelected = selectedCurrencyFrom === selectedCurrencyTo;
 
   const shouldDisable = () => {
-    if (isEverythingUp || !currencyValue || isBeyondBalance) {
+    if (
+      isEverythingUp ||
+      !currencyValue ||
+      isBeyondBalance ||
+      !isSameCurrencySelected
+    ) {
       return true;
     }
 
@@ -86,7 +92,7 @@ const Exchanger = ({
   };
 
   const hasInputError = () => {
-    if (isBalanceEmpty || isBeyondBalance) {
+    if (isBalanceEmpty || isBeyondBalance || isSameCurrencySelected) {
       return true;
     }
 
@@ -100,6 +106,10 @@ const Exchanger = ({
 
     if (isBeyondBalance) {
       return 'Provided value exceeds balance';
+    }
+
+    if (isSameCurrencySelected) {
+      return 'Same currency exchange is not allowed';
     }
 
     return 'Provide value within balance';
