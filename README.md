@@ -18,6 +18,6 @@ An app that enables users to exchange currency between US dollar, British pound,
 - Redux
 - Redux-Saga
 - Jest
-- Material-ui with the `styled component` functionality.
+- Material-UI with the `styled component` functionality.
 
 _This app is scaffolded using create-react-app_
