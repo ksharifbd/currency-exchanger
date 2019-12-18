@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Info Displayer should render the intial setup correctly 1`] = `
+<InfoDisplayer
+  amount="10"
+  hasWrapper={false}
+  label="label"
+  symbol="$"
+>
+  <Styled(Styled(MuiBox))
+    component="p"
+  >
+    <p
+      className="Styled(MuiBox)-root-1"
+    >
+      label
+    </p>
+  </Styled(Styled(MuiBox))>
+  <Styled(MuiBox)>
+    <div
+      className="MuiBox-root MuiBox-root-3"
+    >
+      <Styled(Styled(MuiBox))
+        component="span"
+      >
+        <span
+          className="Styled(MuiBox)-root-4"
+        >
+          $
+        </span>
+      </Styled(Styled(MuiBox))>
+      <Styled(MuiBox)
+        component="span"
+      >
+        <span
+          className="MuiBox-root MuiBox-root-5"
+        >
+          10
+        </span>
+      </Styled(MuiBox)>
+    </div>
+  </Styled(MuiBox)>
+</InfoDisplayer>
+`;
+
+exports[`Info Displayer should render the setup with wrapper correctly 1`] = `
+<InfoDisplayer
+  amount="10"
+  hasWrapper={true}
+  label="label"
+  symbol="$"
+>
+  <Styled(Styled(MuiBox))
+    id="infoDisplayerWrapper"
+  >
+    <Styled(MuiBox)
+      className="Styled(MuiBox)-root-6"
+      id="infoDisplayerWrapper"
+    >
+      <div
+        className="MuiBox-root MuiBox-root-8 Styled(MuiBox)-root-6"
+        id="infoDisplayerWrapper"
+      >
+        <Styled(Styled(MuiBox))
+          component="p"
+        >
+          <p
+            className="Styled(MuiBox)-root-9"
+          >
+            label
+          </p>
+        </Styled(Styled(MuiBox))>
+        <Styled(MuiBox)>
+          <div
+            className="MuiBox-root MuiBox-root-10"
+          >
+            <Styled(Styled(MuiBox))
+              component="span"
+            >
+              <span
+                className="Styled(MuiBox)-root-11"
+              >
+                $
+              </span>
+            </Styled(Styled(MuiBox))>
+            <Styled(MuiBox)
+              component="span"
+            >
+              <span
+                className="MuiBox-root MuiBox-root-12"
+              >
+                10
+              </span>
+            </Styled(MuiBox)>
+          </div>
+        </Styled(MuiBox)>
+      </div>
+    </Styled(MuiBox)>
+  </Styled(Styled(MuiBox))>
+</InfoDisplayer>
+`;

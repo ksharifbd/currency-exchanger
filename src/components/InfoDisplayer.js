@@ -38,7 +38,9 @@ const InfoDisplayer = ({ label, symbol, amount, hasWrapper }) => {
   return (
     <>
       {hasWrapper ? (
-        <InfoDisplayerWrapper>{content}</InfoDisplayerWrapper>
+        <InfoDisplayerWrapper id="infoDisplayerWrapper">
+          {content}
+        </InfoDisplayerWrapper>
       ) : (
         content
       )}
