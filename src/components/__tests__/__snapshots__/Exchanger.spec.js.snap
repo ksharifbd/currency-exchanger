@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Exchanger should render basic setup correctly 1`] = `
+<Styled(MuiBox)>
+  <form
+    onSubmit={[Function]}
+  >
+    <Styled(Styled(MuiBox))
+      mb={3}
+    >
+      <ExchangeInput
+        currencySymbol="please provide USD, GBP, or EUR"
+        currencyValue=""
+        hasInputError={false}
+        inputCurrencyBalance="10"
+        inputHelperText="Provide value within balance"
+        onCurrencySelect={[Function]}
+        onCurrencyValueChange={[Function]}
+        selectedCurrency="USD"
+      />
+      <ArrowRightAltIcon />
+      <ExchangeOutput
+        convertedValue=""
+        currencySymbol="please provide USD, GBP, or EUR"
+        onCurrencySelect={[Function]}
+        outputCurrencyBalance="50"
+        outputCurrencyExchangeRate="5"
+        selectedInputCurrency="USD"
+        selectedOutputCurrency="USD"
+      />
+    </Styled(Styled(MuiBox))>
+    <Styled(Styled(MuiBox))>
+      <WithStyles(ForwardRef(Button))
+        color="primary"
+        disabled={true}
+        type="submit"
+        variant="contained"
+      >
+        Exchange
+      </WithStyles(ForwardRef(Button))>
+    </Styled(Styled(MuiBox))>
+  </form>
+</Styled(MuiBox)>
+`;
